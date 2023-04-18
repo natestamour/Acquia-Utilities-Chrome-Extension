@@ -1,0 +1,100 @@
+@use "sass:color";
+@use "sass:math";
+@use "../utilities/breakpoints" as *;
+@use "../utilities/royall" as *;
+
+
+// ================
+// Variables
+// ================
+
+
+// ================
+// Fonts
+
+@include fontFace("/fonts/fontawesome-webfont", "Icons");
+
+// Use the below for Adobe Fonts. Replace the URL with the font(s) you're planning to use.
+// @import url("https://use.typekit.net/pyn1ykk.css");
+
+// ================
+// Variables
+
+// Font Stacks
+$f-headlineFont: sans-serif;
+$f-bodyFont: sans-serif;
+$f-iconFont: "Icons";
+
+
+// EAB Brand Colors
+$c-blue: #004b87;
+$c-medBlue: #00365f;
+$c-darkBlue: #002746;
+$c-orange: #ed8b00;
+$c-lightTeal:#e0f1f1;
+$c-lightGrey: #eee;
+$c-grey: #6d6e71;
+
+// Colors
+$c-white: #fff;
+$c-lightGrey: #eee;
+$c-black: #000;
+$c-error: #c00;
+$c-valid: green;
+$c-link: blue;
+
+// Common Dimensions
+$d-centerMaxWidth: $mq-1200;
+$d-centerWidth: 90%;
+$d-sectionPaddingSm: 4vw 0;
+$d-sectionPaddingLg: 6vw 0;
+
+$d-gridCalc: calc(#{math.div((100% - $d-centerWidth), 2)});
+$d-gridMaxWidth: math.div($d-centerMaxWidth, 1.8);
+
+$t-transition: all 0.25s ease-in-out;
+
+// ================
+// Icons 
+
+// Arrows
+// https://fontawesome.com/v4/icons/
+$i-chevronRight: "\f054";
+$i-arrowRight: "\f061";
+$i-angle_right: "\f105";
+$i-circleArrowRight: "\f18e";
+$i-triangleRight: "\f0da";
+
+// Check/Close
+$i-close: "\f00d";
+$i-closeCircle: "\f057";
+$i-closeCircleOutline: "\f05c";
+$i-check: "\f00c";
+$i-checkCircle: "\f058";
+$i-checkCircleOutline: "\f05d";
+
+// Other
+$i-errorCircle: "\f06a";
+$i-lightBulb: "\f0eb";
+$i-mapMarker: "\f041";
+$i-quoteLeft: "\f10d";
+$i-quoteRight: "\f10e";
+$i-bookmark: "\f02e";
+$i-laptop: "\f109";
+$i-university: "\f19c";
+$i-gradCap: "\f19d";
+$i-users: "\f0c0";
+$i-star: "\f005";
+$i-thumbTack: "\f08d";
+$i-bullhorn: "\f0a1";
+$i-flag: "\f024";
+$i-heart: "\f004";
+
+// Contact
+$i-phone: "\f095";
+$i-phoneSign: "\f098";
+$i-mobilePhone: "\f10b";
+$i-email: "\f0e0";
+$i-emailOutline: "\f003";
+
+$x-imgAssetPath: "../../assets/images/";

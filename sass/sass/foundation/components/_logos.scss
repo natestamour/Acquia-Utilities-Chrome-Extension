@@ -1,0 +1,37 @@
+@use "sass:color";
+@use "sass:math";
+@use "../utilities" as *;
+@use "../config" as *;
+
+// ================
+// Buttons
+// ================
+
+// ================
+// Logos
+
+%logo {
+  display: block;
+  margin: 0;
+  text-indent: -9999em;
+  color: black;
+
+  &::after {
+    display: none;
+  }
+}
+
+.school-logo {
+  @extend %logo;
+  @include fluidRem("width", 15rem, 18.75rem);
+  @include fluidRem("height", 3.2rem, 4rem);
+
+  background: url("/images/img-logo.svg") no-repeat left center / contain;
+}
+
+
+%logo-reversed {
+  @extend .school-logo;
+  background: url("/images/img-logo-rev.svg") no-repeat left center / contain;
+  color:white;
+}

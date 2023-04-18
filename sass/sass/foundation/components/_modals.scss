@@ -1,0 +1,174 @@
+@use "sass:color";
+@use "sass:math";
+@use "../config" as *;
+@use "../utilities" as *;
+
+// ================
+// Modal Windows (ACS)
+// ================
+
+// ================
+// Modal Format Selection
+
+$x-modalFormat: "acs"; // 'rms', 'acs', or 'rope'
+
+// ================
+// Base Modal Styles
+
+.fancybox-container {
+  font-family: inherit;
+}
+
+%modal-overlay {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: rgba(#000, 0.8) !important;
+}
+
+%modal-wrap {
+  position: absolute !important;
+  right: 0 !important;
+  left: 0 !important;
+  width: 90% !important;
+  max-width: $mq-600 !important;
+  margin: 0 auto !important;
+}
+
+%modal-skin {
+  padding: 1.5rem !important;
+  border-radius: 0 !important;
+  background: #fff !important;
+}
+
+%modal-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  color: transparent;
+  border: 0;
+  background: none;
+  font-size: 0;
+
+  &::after {
+    content: $i-close;
+    color: $c-link;
+    font-family: $f-iconFont;
+    font-size: 2rem;
+    line-height: 1;
+    box-shadow: none;
+    transition: all 0.25s ease-in-out;
+  }
+
+  &:hover,
+  &:focus {
+    background: none;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    box-shadow: none;
+
+    &::after {
+      text-decoration: none;
+      color: lighten($c-link, 15%);
+      box-shadow: none;
+    }
+  }
+}
+
+@if $x-modalFormat =="fancybox" {
+  // ================
+  // Fancybox Modals
+
+  .fancybox-overlay {
+    @extend %modal-overlay;
+  }
+
+  .fancybox-wrap {
+    @extend %modal-wrap;
+  }
+
+  .fancybox-skin {
+    @extend %modal-skin;
+  }
+
+  .fancybox-inner {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  .fancybox-close {
+    @extend %modal-close;
+  }
+} @else if $x-modalFormat =="acs" {
+  // ================
+  // ACS - Fancybox Modals
+
+  .fancybox-bg {
+    @extend %modal-overlay;
+  }
+
+  .fancybox-content {
+    @extend %modal-wrap;
+    @extend %modal-skin;
+
+    position: relative !important;
+
+    & > [tabindex="0"] {
+      outline: 0;
+    }
+
+    .copyright {
+      @extend %small;
+    }
+  }
+
+  [class*="fancybox-close"] {
+    @extend %modal-close;
+  }
+} @else if $x-modalFormat =="rope" {
+  // ================
+  // ROPE Modals
+
+  body.overlay-lock {
+    position: relative;
+    overflow: hidden !important;
+    height: 100% !important;
+  }
+
+  .rope-overlay {
+    @extend %modal-overlay;
+
+    &.overlay-scale {
+      transform: scale(0.9);
+      visibility: hidden;
+      overflow: auto;
+      transition: transform 0.2s, opacity 0.2s, visibility 0s 0.2s;
+      opacity: 0;
+
+      &.open {
+        transform: scale(1);
+        visibility: visible;
+        transition: transform 0.4s, opacity 0.4s;
+        opacity: 1;
+      }
+    }
+
+    .wrapper {
+      @extend %modal-wrap;
+      @extend %modal-skin;
+
+      top: 5%;
+    }
+
+    .rope-overlay-close {
+      @extend %modal-close;
+    }
+  }
+}

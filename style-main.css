@@ -1,0 +1,906 @@
+@charset "UTF-8";
+@font-face {
+  font-family: "Icons";
+  font-weight: normal;
+  font-style: normal;
+  src: url("/fonts/fontawesome-webfont.woff") format("woff");
+}
+*,
+*::before,
+*::after {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: inherit;
+}
+
+html,
+body,
+p,
+ol,
+ul,
+li,
+dl,
+dt,
+dd,
+blockquote,
+figure,
+fieldset,
+legend,
+textarea,
+pre,
+iframe,
+hr,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  margin: 0;
+}
+
+html {
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  -webkit-text-size-adjust: 100%;
+     -moz-text-size-adjust: 100%;
+          text-size-adjust: 100%;
+}
+
+img,
+embed,
+iframe,
+object,
+audio,
+video {
+  height: auto;
+  max-width: 100%;
+}
+
+iframe,
+fieldset {
+  border: 0;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td,
+th {
+  padding: 0;
+  text-align: left;
+}
+
+.hidden,
+[hidden] {
+  display: none !important;
+  visibility: hidden;
+}
+
+.visuallyhidden, .ac_results.hide,
+.ceeb-results.hide {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.visuallyhidden.focusable:active, .focusable.ac_results.hide:active,
+.focusable.ceeb-results.hide:active,
+.visuallyhidden.focusable:focus,
+.focusable.ac_results.hide:focus,
+.focusable.ceeb-results.hide:focus {
+  clip: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  position: static;
+  width: auto;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+.nobreak {
+  white-space: nowrap;
+}
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+button,
+input {
+  overflow: visible;
+}
+
+button,
+select {
+  text-transform: none;
+}
+
+button,
+[type=reset],
+[type=submit] {
+  -webkit-appearance: button;
+     -moz-appearance: button;
+          appearance: button;
+}
+
+button::-moz-focus-inner,
+[type=button]::-moz-focus-inner,
+[type=reset]::-moz-focus-inner,
+[type=submit]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+button:-moz-focusring,
+[type=button]:-moz-focusring,
+[type=reset]:-moz-focusring,
+[type=submit]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+[type=search] {
+  -webkit-appearance: textfield;
+     -moz-appearance: textfield;
+          appearance: textfield;
+  outline-offset: -2px;
+}
+
+[type=search]::-webkit-search-cancel-button,
+[type=search]::-webkit-search-decoration {
+  -webkit-appearance: none;
+          appearance: none;
+}
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+          appearance: button;
+  font: inherit;
+}
+
+summary {
+  display: list-item;
+}
+
+html {
+  line-height: 1.4;
+  font-family: sans-serif;
+  color: #414141;
+}
+
+body {
+  font-size: 1rem;
+}
+@media (min-width: 37.5rem) {
+  body {
+    font-size: 1.0625rem;
+  }
+}
+@media (min-width: 75rem) {
+  body {
+    font-size: 1.125rem;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0.5rem 0 1rem;
+  font-family: sans-serif;
+  line-height: 1.2;
+}
+
+h1,
+h2 {
+  font-size: 1.5rem;
+  color: #004b87;
+}
+@media (min-width: 18.75rem) {
+  h1,
+  h2 {
+    font-size: calc( 1.5rem + 0.5 * ((100vw - 18.75rem) / 56.25) );
+  }
+}
+@media (min-width: 75rem) {
+  h1,
+  h2 {
+    font-size: 2rem;
+  }
+}
+
+h3 {
+  font-size: 1.25rem;
+}
+@media (min-width: 18.75rem) {
+  h3 {
+    font-size: calc( 1.25rem + 0.25 * ((100vw - 18.75rem) / 56.25) );
+  }
+}
+@media (min-width: 75rem) {
+  h3 {
+    font-size: 1.5rem;
+  }
+}
+
+h4 {
+  font-size: 1.5rem;
+}
+@media (min-width: 18.75rem) {
+  h4 {
+    font-size: calc( 1.5rem + 0.5 * ((100vw - 18.75rem) / 56.25) );
+  }
+}
+@media (min-width: 75rem) {
+  h4 {
+    font-size: 2rem;
+  }
+}
+
+h5 {
+  font-size: 1.25rem;
+}
+@media (min-width: 18.75rem) {
+  h5 {
+    font-size: calc( 1.25rem + 0.25 * ((100vw - 18.75rem) / 56.25) );
+  }
+}
+@media (min-width: 75rem) {
+  h5 {
+    font-size: 1.5rem;
+  }
+}
+
+h6 {
+  font-size: 1rem;
+}
+@media (min-width: 18.75rem) {
+  h6 {
+    font-size: calc( 1rem + 0.15 * ((100vw - 18.75rem) / 56.25) );
+  }
+}
+@media (min-width: 75rem) {
+  h6 {
+    font-size: 1.15rem;
+  }
+}
+
+p,
+ul,
+ol,
+blockquote,
+address {
+  margin: 0 0 1rem;
+  font-style: normal;
+}
+
+ul,
+ol {
+  margin: 1rem 0 1rem 1.5rem;
+}
+a {
+  color: blue;
+  transition: all 0.25s ease-in-out;
+}
+a:hover, a:focus {
+  text-decoration: none;
+  color: #000099;
+}
+
+.fancybox-content .copyright,
+small,
+.copyright {
+  font-size: 0.875em;
+  font-style: italic;
+}
+
+.error,
+.val-header {
+  color: #c00;
+}
+
+hr {
+  margin-bottom: 1rem;
+}
+
+.nobr {
+  white-space: nowrap;
+}
+
+@-o-viewport {
+  width: device-width;
+  zoom: 1;
+}
+
+@viewport {
+  width: device-width;
+  zoom: 1;
+}
+@viewport {
+  width: device-width;
+  zoom: 1;
+}
+.center {
+  width: 90%;
+  max-width: 75rem;
+  margin: auto;
+}
+
+button.button, .button button,
+a.button,
+.button a,
+input.button,
+.button input, button,
+.type_event_button a,
+input[type=submit],
+input[type=button], button.minor-button, .minor-button button,
+a.minor-button,
+.minor-button a,
+input.minor-button,
+.minor-button input, button.major-button, .major-button button,
+a.major-button,
+.major-button a,
+input.major-button,
+.major-button input {
+  font-size: 1rem;
+  background: #004b87;
+  color: white;
+  border: 2px solid #004b87;
+  border-radius: 5px;
+  transition: all 0.25s ease-in-out;
+  display: block;
+  width: 100%;
+  padding: 0.65em 1.5em;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  font-family: sans-serif;
+  font-weight: bold;
+  outline: 0;
+  line-height: 1.2;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+@media (min-width: 18.75rem) {
+  button.button, .button button,
+  a.button,
+  .button a,
+  input.button,
+  .button input, button,
+  .type_event_button a,
+  input[type=submit],
+  input[type=button], button.minor-button, .minor-button button,
+  a.minor-button,
+  .minor-button a,
+  input.minor-button,
+  .minor-button input, button.major-button, .major-button button,
+  a.major-button,
+  .major-button a,
+  input.major-button,
+  .major-button input {
+    font-size: calc( 1rem + 0.15 * ((100vw - 18.75rem) / 56.25) );
+  }
+}
+@media (min-width: 75rem) {
+  button.button, .button button,
+  a.button,
+  .button a,
+  input.button,
+  .button input, button,
+  .type_event_button a,
+  input[type=submit],
+  input[type=button], button.minor-button, .minor-button button,
+  a.minor-button,
+  .minor-button a,
+  input.minor-button,
+  .minor-button input, button.major-button, .major-button button,
+  a.major-button,
+  .major-button a,
+  input.major-button,
+  .major-button input {
+    font-size: 1.15rem;
+  }
+}
+a.button:hover,
+.button a:hover,
+input.button:hover,
+.button input:hover, button:hover,
+.type_event_button a:hover,
+input[type=submit]:hover,
+input[type=button]:hover,
+a.minor-button:hover,
+.minor-button a:hover,
+input.minor-button:hover,
+.minor-button input:hover,
+a.major-button:hover,
+.major-button a:hover,
+input.major-button:hover,
+.major-button input:hover,
+a.button:focus,
+.button a:focus,
+input.button:focus,
+.button input:focus, button:focus,
+.type_event_button a:focus,
+input[type=submit]:focus,
+input[type=button]:focus,
+a.minor-button:focus,
+.minor-button a:focus,
+input.minor-button:focus,
+.minor-button input:focus,
+a.major-button:focus,
+.major-button a:focus,
+input.major-button:focus,
+.major-button input:focus {
+  color: #004b87;
+  background: transparent;
+}
+@media (min-width: 31.25rem) {
+  button.button, .button button,
+  a.button,
+  .button a,
+  input.button,
+  .button input, button,
+  .type_event_button a,
+  input[type=submit],
+  input[type=button], button.minor-button, .minor-button button,
+  a.minor-button,
+  .minor-button a,
+  input.minor-button,
+  .minor-button input, button.major-button, .major-button button,
+  a.major-button,
+  .major-button a,
+  input.major-button,
+  .major-button input {
+    display: inline-block;
+    width: auto;
+  }
+}
+
+button.major-button, .major-button button,
+a.major-button,
+.major-button a,
+input.major-button,
+.major-button input {
+  font-size: 1.25rem;
+}
+@media (min-width: 18.75rem) {
+  button.major-button, .major-button button,
+  a.major-button,
+  .major-button a,
+  input.major-button,
+  .major-button input {
+    font-size: calc( 1.25rem + 0.25 * ((100vw - 18.75rem) / 56.25) );
+  }
+}
+@media (min-width: 75rem) {
+  button.major-button, .major-button button,
+  a.major-button,
+  .major-button a,
+  input.major-button,
+  .major-button input {
+    font-size: 1.5rem;
+  }
+}
+
+button.minor-button, .minor-button button,
+a.minor-button,
+.minor-button a,
+input.minor-button,
+.minor-button input {
+  font-size: 0.78rem;
+  padding: 0.35em 0.65em;
+}
+@media (min-width: 18.75rem) {
+  button.minor-button, .minor-button button,
+  a.minor-button,
+  .minor-button a,
+  input.minor-button,
+  .minor-button input {
+    font-size: calc( 0.78rem + 0.195 * ((100vw - 18.75rem) / 56.25) );
+  }
+}
+@media (min-width: 75rem) {
+  button.minor-button, .minor-button button,
+  a.minor-button,
+  .minor-button a,
+  input.minor-button,
+  .minor-button input {
+    font-size: 0.975rem;
+  }
+}
+
+.rte-custom-highschoollookup7 .result {
+  position: relative;
+  margin: 1rem 0;
+  padding: 0.5rem;
+  border: 1px solid #000;
+}
+.rte-custom-highschoollookup7 .result .location {
+  display: block;
+  font-size: 0.875em;
+  font-style: italic;
+}
+.rte-custom-highschoollookup7 .result a {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  color: transparent;
+  border: 0;
+  background: none;
+  font-size: 0;
+}
+.rte-custom-highschoollookup7 .result a::after {
+  content: "✗ ";
+  color: #000;
+}
+.ceeb-result-container {
+  position: relative;
+}
+.ceeb-result-container .ceeb-icon.show::after {
+  content: "✗ ";
+  position: absolute;
+  right: 0;
+  cursor: pointer;
+}
+.ceeb-result-container .ceeb-icon.show:hover::after, .ceeb-result-container .ceeb-icon.show:focus::after {
+  color: blue;
+}
+
+.ac_results,
+.ceeb-results {
+  background: #fff;
+  position: relative;
+  z-index: 1000;
+}
+.ac_results.show,
+.ceeb-results.show {
+  position: absolute;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+.ac_results.many-results,
+.ceeb-results.many-results {
+  height: 300px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.ac_results.few-results,
+.ceeb-results.few-results {
+  height: -moz-fit-content;
+  height: fit-content;
+}
+.ac_results ul,
+.ceeb-results ul {
+  margin: 0;
+  padding: 0;
+}
+.ac_results li,
+.ceeb-results li {
+  display: block;
+  margin: 0;
+  padding: 0.75em;
+  cursor: pointer;
+}
+.ac_results li:nth-child(even),
+.ceeb-results li:nth-child(even) {
+  background: #eee;
+}
+.ac_results li.ac_over, .ac_results li:hover, .ac_results li:focus,
+.ceeb-results li.ac_over,
+.ceeb-results li:hover,
+.ceeb-results li:focus {
+  background-color: #000;
+  color: white;
+}
+.ac_results li .location,
+.ac_results li .result-location,
+.ceeb-results li .location,
+.ceeb-results li .result-location {
+  display: block;
+  font-size: 0.85em;
+  font-style: italic;
+  margin: 0;
+}
+select, textarea, input[type=email],
+input[type=number],
+input[type=password],
+input[type=tel],
+input[type=text],
+input[type=url],
+input[type=search] {
+  width: 100%;
+  height: auto;
+  padding: 0.65rem 0.5rem;
+  border: 1px solid black;
+  background: white;
+  font-size: 1rem;
+  line-height: 1.6;
+  border-radius: 0;
+}
+select:hover, textarea:hover, input[type=email]:hover,
+input[type=number]:hover,
+input[type=password]:hover,
+input[type=tel]:hover,
+input[type=text]:hover,
+input[type=url]:hover,
+input[type=search]:hover, select:focus, textarea:focus, input[type=email]:focus,
+input[type=number]:focus,
+input[type=password]:focus,
+input[type=tel]:focus,
+input[type=text]:focus,
+input[type=url]:focus,
+input[type=search]:focus {
+  outline: none;
+}
+
+@media (min-width: 37.5rem) {
+  input[type=tel] {
+    width: auto;
+  }
+}
+
+textarea {
+  overflow: auto;
+  resize: vertical;
+  min-height: 8em;
+}
+
+select {
+  overflow: hidden;
+  height: 2.75rem;
+}
+
+input[type=radio],
+input[type=checkbox] {
+  font-size: 1em;
+  float: left;
+  width: 1rem;
+  height: 1rem;
+  margin: 0.35rem 0 0;
+}
+input[type=radio] + label,
+input[type=checkbox] + label {
+  display: block;
+  min-height: 0;
+  margin: 0;
+  padding: 0.3125em 0 0.3125em 1.25rem;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1.2;
+}
+
+.mauticform-req-label {
+  font-weight: bold;
+}
+
+.mauticform-errormsg {
+  background: #c00;
+  color: #fff;
+  display: flex;
+  margin-top: 0.25rem;
+  padding: 0.35rem;
+  align-items: baseline;
+  font-size: 1rem;
+}
+.mauticform-errormsg::before {
+  background: #fff;
+  content: "!";
+  color: #c00;
+  border-radius: 100%;
+  font-weight: bold;
+  width: 1rem;
+  height: 1rem;
+  line-height: 1;
+  text-align: center;
+  margin-right: 0.35rem;
+  flex-shrink: 0;
+}
+
+.mauticform-page-wrapper {
+  display: flex !important;
+  flex-wrap: wrap;
+  margin: -1rem -5% 0 0;
+}
+
+.mauticform-row {
+  display: block;
+  width: 100%;
+  margin: 1rem 5% 0 0;
+}
+@media (min-width: 37.5rem) {
+  .mauticform-row.mauticform-row-partial-half {
+    width: 45%;
+  }
+  .mauticform-row.mauticform-row-partial-third {
+    width: 28.333%;
+  }
+  .mauticform-row.mauticform-row-partial-quarter {
+    width: 20%;
+  }
+}
+
+.mauticform-label {
+  display: block;
+  width: auto;
+  padding: 0 0 0.125em;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+.mauticform-label * {
+  padding: 0;
+}
+
+.mauticform-button-wrapper {
+  display: block;
+  margin: 1.5rem 5% 0 0;
+}
+.mauticform-button-wrapper:first-of-type {
+  margin-top: 0;
+}
+.mauticform-button-wrapper:last-of-type {
+  margin-bottom: 0.5rem;
+}
+
+.school-logo {
+  display: block;
+  margin: 0;
+  text-indent: -9999em;
+  color: black;
+}
+.school-logo::after {
+  display: none;
+}
+
+.school-logo {
+  width: 15rem;
+  height: 3.2rem;
+  background: url("/images/img-logo.svg") no-repeat left center/contain;
+}
+@media (min-width: 18.75rem) {
+  .school-logo {
+    width: calc( 15rem + 3.75 * ((100vw - 18.75rem) / 56.25) );
+  }
+}
+@media (min-width: 75rem) {
+  .school-logo {
+    width: 18.75rem;
+  }
+}
+@media (min-width: 18.75rem) {
+  .school-logo {
+    height: calc( 3.2rem + 0.8 * ((100vw - 18.75rem) / 56.25) );
+  }
+}
+@media (min-width: 75rem) {
+  .school-logo {
+    height: 4rem;
+  }
+}
+
+.fancybox-container {
+  font-family: inherit;
+}
+
+.fancybox-bg {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: rgba(0, 0, 0, 0.8) !important;
+}
+
+.fancybox-content {
+  position: absolute !important;
+  right: 0 !important;
+  left: 0 !important;
+  width: 90% !important;
+  max-width: 37.5rem !important;
+  margin: 0 auto !important;
+}
+
+.fancybox-content {
+  padding: 1.5rem !important;
+  border-radius: 0 !important;
+  background: #fff !important;
+}
+
+[class*=fancybox-close] {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  color: transparent;
+  border: 0;
+  background: none;
+  font-size: 0;
+}
+[class*=fancybox-close]::after {
+  content: "\f00d";
+  color: blue;
+  font-family: "Icons";
+  font-size: 2rem;
+  line-height: 1;
+  box-shadow: none;
+  transition: all 0.25s ease-in-out;
+}
+[class*=fancybox-close]:hover, [class*=fancybox-close]:focus {
+  background: none;
+  text-decoration: none;
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+[class*=fancybox-close]:hover::after, [class*=fancybox-close]:focus::after {
+  text-decoration: none;
+  color: #4d4dff;
+  box-shadow: none;
+}
+
+.fancybox-content {
+  position: relative !important;
+}
+.fancybox-content > [tabindex="0"] {
+  outline: 0;
+}
+.wrapper {
+  width: 25rem;
+  height: 37.5rem;
+  padding: 1rem;
+}
+
+textarea {
+  white-space: nowrap;
+  height: 18.75rem;
+  font-size: 0.8125rem;
+}
+
+button {
+  margin-top: 1rem;
+}/*# sourceMappingURL=style-main.css.map */

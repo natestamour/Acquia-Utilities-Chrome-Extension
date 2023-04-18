@@ -1,0 +1,26 @@
+@use "sass:color";
+@use "sass:math";
+@use "foundation/config" as *;
+@use "foundation/components" as *;
+@use "foundation/utilities" as *;
+
+// ================
+// Extension Styles
+// ================
+
+.wrapper{
+  width: $mq-400;
+  height: $mq-600;
+  padding:1rem;
+}
+
+
+textarea{
+  white-space:nowrap;
+  height: $mq-300;
+  font-size: rem(13px);
+}
+
+button{
+  margin-top:1rem;
+}

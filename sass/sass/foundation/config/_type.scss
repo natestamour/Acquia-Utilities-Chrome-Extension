@@ -1,0 +1,155 @@
+@use "sass:color";
+@use "sass:math";
+@use "variables" as *;
+@use "../utilities" as *;
+
+// ================
+// Typography
+// ================
+
+// ================
+// Root
+
+html {
+  line-height: 1.4;
+  font-family: $f-bodyFont;
+  color: #414141;
+}
+
+body {
+  font-size: 1rem;
+
+  @media (min-width: $mq-600) {
+    font-size: 1.0625rem;
+  }
+
+  @media (min-width: $mq-1200) {
+    font-size: 1.125rem;
+  }
+}
+
+// ================
+// Headlines
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0.5rem 0 1rem;
+  font-family: $f-headlineFont;
+  line-height: 1.2;
+}
+
+h1,
+h2 {
+  @include fluidRem("font-size", 1.5rem, 2rem);
+  color: $c-blue;
+}
+
+h3 {
+  @include fluidRem("font-size", 1.25rem, 1.5rem);
+}
+
+h4 {
+  @include fluidRem("font-size", 1.5rem, 2rem);
+}
+
+h5 {
+  @include fluidRem("font-size", 1.25rem, 1.5rem);
+}
+
+h6 {
+  @include fluidRem("font-size", 1rem, 1.15rem);
+}
+
+// ================
+// Body Copy
+
+p,
+ul,
+ol,
+blockquote,
+address {
+  margin: 0 0 1rem;
+  font-style: normal;
+}
+
+ul,
+ol {
+  margin: 1rem 0 1rem 1.5rem;
+
+  li {
+  }
+}
+
+// @include fancyList on ul element. 
+// Use to add extra styling to list elements.
+@mixin fancyList{
+  margin:0;
+
+  li{
+    list-style: none;
+    display:flex;
+    gap:.5rem;
+  
+    &:before{
+      content:$i-check;
+      font-family: $f-iconFont;
+      display:inline-block;
+      position:relative;
+    }
+
+    &~li{
+      margin-top:.5rem;
+    }
+  }
+}
+
+
+a {
+  color: $c-link;
+  transition: $t-transition;
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    color: darken($c-link, 20%);
+  }
+}
+
+// @include reversed-link on <a> element
+@mixin reversed-link{
+  color:white;
+
+  &:hover,
+  &:focus {
+    color: white;
+  }
+}
+
+%small,
+small,
+.copyright {
+  font-size: 0.875em;
+  font-style: italic;
+}
+
+// ================
+// Other Type Styles
+
+.error,
+.val-header {
+  color: $c-error;
+}
+
+hr {
+  margin-bottom: 1rem;
+}
+
+.nobr {
+  white-space: nowrap;
+}
+
+

@@ -1,0 +1,230 @@
+@use "sass:math";
+@use "breakpoints" as *;
+
+// ================
+// Acquia Campaign Studio Fixes, Resets and Mixins
+// ================
+
+// ================
+// Apply CTA Format Mixin
+// Note: The styles below are to achieve a fluid layout with the email field inline to the left of the apply button.
+
+@mixin applyFormInlineEmail (
+  $_mq-inlineEmail: "(min-width: #{$mq-500})",
+	$_x-number: "null",
+  $_d-field-button-gap: 0
+) {
+
+  @media #{$_mq-inlineEmail} {
+    .apply-form {
+      .mauticform-page-wrapper {
+        position: relative;
+        display: flex;
+        align-items: stretch;
+        flex-wrap: nowrap;
+        width: 100%;
+        margin-top: 1rem;
+      }
+
+      .mauticform-email {
+        display: flex;
+        width: 100%;
+				margin: 0 $_d-field-button-gap 0 0;
+
+        input {
+          width: 100%;
+        }
+
+        .mauticform-errormsg {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          width: 100%;
+        }
+      }
+
+      .mauticform-button-wrapper {
+        flex: 0 0 auto;
+        width: auto;
+
+        &,
+        &:last-of-type {
+          margin: 0;
+        }
+
+        button {
+          margin: 0;
+        }
+      }
+
+			@if $_x-number == "1" {
+				.mauticform-field-1{
+					display: block;
+					width: 100%;
+					margin: 0 0 0.5rem 0;
+				}
+	
+				.mauticform-page-wrapper {
+					flex-wrap: wrap;
+				}
+	
+				.mauticform-email {
+					flex: 1 1 45%;
+					margin: 0 $_d-field-button-gap 0 0;
+				}
+	
+			} 
+	
+			@else if $_x-number == "2" {
+				.mauticform-field-1,
+				.mauticform-field-2{
+					display: block;
+					width: 100%;
+					margin: 0 0 0.5rem 0;
+				}
+	
+				.mauticform-page-wrapper {
+					flex-wrap: wrap;
+				}
+	
+				.mauticform-email {
+					flex: 1 1 45%;
+					margin: 0 $_d-field-button-gap 0 0;
+				}
+			} 
+    }
+    @content;
+  }
+}
+
+// @mixin applyFormInlineEmail (
+//   $_mq-inlineEmail: "(min-width: #{$mq-500})",
+//   $_d-field-button-gap: 0
+// ) {
+
+//   @media #{$_mq-inlineEmail} {
+//     .apply-form {
+//       .mauticform-page-wrapper {
+//         position: relative;
+//         display: flex;
+//         align-items: stretch;
+//         flex-wrap: nowrap;
+//         width: 100%;
+//         margin-top: 1rem;
+//         gap: $_d-field-button-gap;
+//       }
+
+//       .mauticform-email {
+//         display: flex;
+//         width: 100%;
+//         margin: 0;
+
+//         input {
+//           width: 100%;
+//         }
+
+//         .mauticform-errormsg {
+//           position: absolute;
+//           top: 100%;
+//           left: 0;
+//           width: 100%;
+//         }
+//       }
+
+//       .mauticform-button-wrapper {
+//         flex: 0 0 auto;
+//         width: auto;
+
+//         &,
+//         &:last-of-type {
+//           margin: 0;
+//         }
+
+//         button {
+//           margin: 0;
+//         }
+//       }
+//     }
+
+//     @content;
+//   }
+// }
+
+
+// ================
+// Apply CTA Format Mixin 
+// Note: Used like applyFormInlineEmail mixin, but stacks additional fields above the email field. 
+// $_x-number: number of additional fields you need to add. Only supports 1 or 2 new fields.
+
+@mixin applyFormInlineFields(
+	$_mq-inlineFields: "(min-width: #{$mq-500})",
+	$_x-number: "2",
+  $_d-field-button-gap: 0
+	) {
+
+	@media #{$_mq-inlineFields} {
+
+		.apply-form {
+
+			@if $_x-number == "1" {
+				.mauticform-field-1{
+					display: block;
+					width: 100%;
+					margin: 0 0 0.5rem 0;
+				}
+			} 
+
+			@else if $_x-number == "2" {
+				.mauticform-field-1,
+				.mauticform-field-2{
+					display: block;
+					width: 100%;
+					margin: 0 0 0.5rem 0;
+				}
+			} 
+
+			.mauticform-page-wrapper {
+				position: relative;
+				display: flex;
+				align-items: stretch;
+				flex-wrap: wrap;
+				width: 100%;
+				margin-top: 1rem;
+			}
+
+			.mauticform-email {
+				display: flex;
+				flex: 1 1 45%;
+				margin: 0 $_d-field-button-gap 0 0;
+
+				input {
+					width: 100%;
+				}
+
+				.mauticform-errormsg {
+					position: absolute;
+					top: 100%;
+					left: 0;
+					width: 100%;
+				}
+			}
+
+			.mauticform-button-wrapper {
+				flex: 0 0 auto;
+				width: auto;
+
+				&,
+				&:last-of-type {
+					margin: 0;
+				}
+
+				button {
+					margin: 0;
+				}
+			}
+		}
+
+		@content;
+
+	}
+}

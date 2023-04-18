@@ -1,0 +1,104 @@
+@use "sass:color";
+@use "sass:math";
+@use "breakpoints" as *;
+@use "royall" as *;
+@use "../config/variables" as *;
+
+// ================
+// ALR Supported Mixins
+// ================
+
+// Returns a rem units from pixel value
+// Ex. font-size: rem(16); 
+@function rem($pixels, $context: 16px) {
+  @if (unitless($pixels)) {
+    $pixels: $pixels * 1px;
+  }
+  @if (unitless($context)) {
+    $context: $context * 1px;
+  }
+  @return math.div($pixels, $context) * 1rem;
+}
+
+
+// Grid Items Mixin (School Content Section)
+@mixin gridItems (
+  $_x-number: "null",
+  $_mq-small: $mq-600,
+  $_mq-large: $mq-1000,
+  $_x-gridGapSmall: 1rem,
+  $_x-gridGapLarge: 1.5rem
+) {
+
+  @media (max-width: maxMQ($_mq-small)) {
+    li {
+      ~ li {
+        margin-top: $_x-gridGapLarge;
+      }
+    }
+  }
+
+  @media (min-width: $_mq-small) {
+    display: grid;
+    grid-gap: $_x-gridGapSmall;
+    grid-template-columns: repeat(2, 1fr);
+
+    @if $_x-number == "3" {
+      grid-template-rows: repeat(auto, auto);
+
+      li {
+        &:last-child {
+          grid-column: span 2;
+        }
+      }
+    } @else if $_x-number == "4" {
+      grid-template-rows: repeat(2, 1fr);
+    } @else if $_x-number == "5" {
+      grid-template-rows: repeat(3, 1fr);
+
+      li {
+        &:last-child {
+          grid-column: span 2;
+        }
+      }
+    } @else if $_x-number == "6" {
+      grid-template-rows: repeat(3, 1fr);
+    }
+  }
+
+  @media (min-width: $_mq-large) {
+    grid-gap: $_x-gridGapLarge;
+
+    @if $_x-number == "3" {
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: 1fr;
+
+      li {
+        &:last-child {
+          grid-column: auto;
+        }
+      }
+    } @else if $_x-number == "4" {
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: 1fr;
+    } @else if $_x-number == "5" {
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+
+      li {
+        grid-column: span 2;
+
+        &:last-child {
+          grid-column-end: -2;
+        }
+
+        &:nth-last-child(2) {
+          grid-column-end: 4;
+        }
+      }
+    } @else if $_x-number == "6" {
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+    }
+  }
+}

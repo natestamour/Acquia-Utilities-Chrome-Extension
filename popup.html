@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Acquia Utilities</title>
+    <script src="jquery-3.6.0.min.js"></script>
+    <script src="popup.js"></script>
+    <link rel="stylesheet" type="text/css" href="style-main.css">
+</head>
+<body class="popup-body">
+
+    <!-- Auto Filler HTML -->
+    <section id="autoFiller" class="wrapper" style="display:none;">
+        <h1>Acquia Select AutoFiller</h1>
+        <p>Copy your list from excel into the text area below and click "Submit" while you are in an Acquia form or field asset.</p>
+        <label>List you want to autofill</label>
+        <textarea id="programListArea" placeholder="program name | 1"></textarea>
+        <button id="listSaveButton">Submit</button>
+    </section>
+
+    <!-- Dynamic Styles HTML -->
+    <section id="autoFiller" class="wrapper" style="display:none;">
+        <h1>Dynamic Content Stylizer</h1>
+        <p>Set your dynamic copy block styles here, click into your dynamic content block and click "apply"</p>
+        <label>Paragraph CSS</label>
+        <textarea id="cssInput"></textarea>
+        <button id="applyBtn">Apply CSS</button>
+    </section>
+</body>
+</html>

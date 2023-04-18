@@ -1,0 +1,111 @@
+@use "sass:color";
+@use "sass:math";
+@use "../utilities" as *;
+@use "../config" as *;
+
+// ================
+// Buttons
+// ================
+
+
+// Button Color Mixin - (used on _buttons.scss)
+// -- Update Colors with Brand Colors -- //
+@mixin buttonColor(
+  $_c-buttonColor: black,
+  $_c-buttonHoverColor: white,
+  $_c-buttonTextColor: white,
+  $_c-buttonTextColorHover: black,
+  $_c-buttonBorderColorIntial: black,
+  $_c-buttonBorderColorHover: black
+) {
+  background: $_c-buttonColor;
+  color: $_c-buttonTextColor;
+  border: 1px solid $_c-buttonBorderColorIntial;
+
+  &:hover,
+  &:focus {
+    background: $_c-buttonHoverColor;
+    color: $_c-buttonTextColorHover;
+    border: 1px solid $_c-buttonBorderColorHover;
+  }
+}
+
+// ================
+// Extendable Placeholders
+
+// Base Button Styles
+%button {
+  @include fluidRem("font-size", 1rem, 1.15rem);
+  background: $c-blue;
+  color:white;
+  border:2px solid $c-blue;
+  border-radius: 5px;
+  transition: all 0.25s ease-in-out;
+  display: block;
+  width: 100%;
+  padding: 0.65em 1.5em;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  font-family: $f-bodyFont;
+  font-weight: bold;
+  outline: 0;
+  line-height: 1.2;
+  appearance: none;
+
+  &:hover,
+  &:focus{
+    color: $c-blue;
+    background: transparent;
+  }
+
+  @media (min-width: $mq-500) {
+    display: inline-block;
+    width: auto;
+  }
+}
+
+// Major Buttons
+%major-button {
+  @extend %button;
+  @include fluidRem("font-size", 1.25rem, 1.5rem);
+}
+
+// Minor Buttons
+%minor-button {
+  @extend %button;
+  @include fluidRem("font-size", 0.78rem, 0.975rem);
+
+  padding: 0.35em 0.65em;
+}
+
+// ================
+// Application of Placeholders
+
+// Default Button Selectors
+button,
+.type_event_button a,
+input[type="submit"],
+input[type="button"] {
+  @extend %button;
+}
+
+// Reusable Button Classes
+button,
+a,
+input {
+  &.button,
+  .button & {
+    @extend %button !optional;
+  }
+
+  &.major-button,
+  .major-button & {
+    @extend %major-button !optional;
+  }
+
+  &.minor-button,
+  .minor-button & {
+    @extend %minor-button !optional;
+  }
+}

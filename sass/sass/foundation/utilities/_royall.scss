@@ -1,0 +1,162 @@
+@use "sass:math";
+@use "breakpoints" as *;
+
+// ================
+// Royall Mixins
+// ================
+
+// ================
+// Mixin: Outputs a @font-face rule
+// More info: https://wiki.eab.com/display/RWD/fontFace%28%29+mixin
+
+@mixin fontFace($_p-fileName,
+$_f-fontFamily: $_fileName,
+$_f-fontWeight: normal,
+$_f-fontStyle: normal) {
+  @font-face {
+    font-family: "#{$_f-fontFamily}";
+    font-weight: $_f-fontWeight;
+    font-style: $_f-fontStyle;
+    src: url("#{$_p-fileName}.woff") format("woff");
+  }
+}
+
+
+// ================
+// Mixin: Creates a Flexbox-based "sticky" footer
+// More info: https://wiki.eab.com/display/RWD/stickyFooter%28%29+mixin
+
+@mixin stickyFooter($_x-content, $_x-wrapper: "body") {
+  #{$_x-wrapper} {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+
+    & > * {
+      flex-shrink: 0;
+    }
+  }
+
+  #{$_x-content} {
+    flex-grow: 1;
+  }
+}
+
+// ================
+// Mixin: Fluidly scales a property from a minimum to a maximum size
+// More info: https://wiki.eab.com/display/RWD/fluidRem%28%29+mixin
+// Sass Dart Updated
+
+//old 
+// @mixin fluidRem($_x-prop,
+// $_d-minRem,
+// $_d-maxRem,
+// $_mq-min: $mq-300,
+// $_mq-max: $mq-1200) {
+//   $_d-mid: "";
+
+//   @for $_x-i from 1 through length($_d-maxRem) {
+//     $_d-iMin: nth($_d-minRem, $_x-i);
+//     $_d-iMax: nth($_d-maxRem, $_x-i);
+
+//     @if $_d-iMin ==0 {
+//       $_d-iMin: 0;
+//     }
+
+//     @if $_d-iMax ==0 {
+//       $_d-iMax: 0;
+//     }
+
+//     $_d-iMid: calc(
+//       #{$_d-iMin} + #{math.div(($_d-iMax - $_d-iMin), 1)} * ((100vw - #{$_mq-min}) / #{math.div(($_mq-max - $_mq-min), 1)})
+//     );
+
+//     @if $_x-i > 1 {
+//       $_d-mid: $_d-mid (+" ");
+//     }
+
+//     $_d-mid: calc(#{$_d-mid} + #{$_d-iMid});
+//   }
+
+//   #{$_x-prop}: #{$_d-minRem};
+
+//   @media (min-width: #{$_mq-min}) {
+//     #{$_x-prop}: #{$_d-mid};
+//   }
+
+//   @media (min-width: #{$_mq-max}) {
+//     #{$_x-prop}: #{$_d-maxRem};
+//   }
+// }
+
+@mixin fluidRem(
+  $_x-prop,
+  $_d-minRem,
+  $_d-maxRem,
+  $_mq-min: $mq-300,
+  $_mq-max: $mq-1200
+) {
+  $_d-mid: "";
+
+  @for $_x-i from 1 through length($_d-maxRem) {
+    $_d-iMin: nth($_d-minRem, $_x-i);
+    $_d-iMax: nth($_d-maxRem, $_x-i);
+
+    @if $_d-iMin == 0 {
+      $_d-iMin: 0rem;
+    }
+
+    @if $_d-iMax == 0 {
+      $_d-iMax: 0rem;
+    }
+
+    $_d-iMid: calc(
+      #{$_d-iMin} +
+        #{math.div(($_d-iMax - $_d-iMin), 1rem)} *
+        ((100vw - #{$_mq-min}) / #{math.div(($_mq-max - $_mq-min), 1rem)})
+    );
+
+    @if ($_x-i > 1) {
+      $_d-mid: $_d-mid + " ";
+    }
+    $_d-mid: $_d-mid + $_d-iMid;
+  }
+  #{$_x-prop}: #{$_d-minRem};
+
+  @media (min-width: #{$_mq-min}) {
+    #{$_x-prop}: #{$_d-mid};
+  }
+
+  @media (min-width: #{$_mq-max}) {
+    #{$_x-prop}: #{$_d-maxRem};
+  }
+}
+
+// ================
+// Mixin: Resizes an <iframe> to fit its container
+// More info: https://wiki.eab.com/display/RWD/iframeWrapper%28%29+mixin
+
+@mixin iframeWrapper($_d-iframeWidth: 560, $_d-iframeHeight: 315) {
+  position: relative;
+  width: 100%;
+  height: 0;
+  // padding-top: ($_d-iframeHeight / $_d-iframeWidth) * 100%;
+  padding-top: math.div($-d-iframeHeight, $-d-iframeWidth) * 100%;
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+  }
+}
+
+// ================
+// Function: Returns a breakpoint value for use in a max media query
+// More info: https://wiki.eab.com/display/RWD/maxMQ%28%29+function
+
+@function maxMQ($_mq-breakpoint) {
+  @return $_mq-breakpoint - 0.0625rem;
+}

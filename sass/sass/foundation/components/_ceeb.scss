@@ -1,0 +1,240 @@
+@use "sass:color";
+@use "sass:math";
+@use "../config" as *;
+@use "../utilities" as *;
+
+// ================
+// CEEB Lookups
+// ================
+
+// ================
+// CEEB Format Selection
+$x-ceebFormat: "autosuggest"; // 'modal' or 'autosuggest'
+
+@if $x-ceebFormat == "autosuggest" {
+  // ================
+  // Auto-Suggest Format
+
+  // CEEB Question
+  .rte-custom-highschoollookup7 {
+    .result {
+      position: relative;
+      margin: 1rem 0;
+      padding: 0.5rem;
+      border: 1px solid #000;
+
+      .location {
+        display: block;
+        font-size: 0.875em;
+        font-style: italic;
+      }
+
+      a {
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+        color: transparent;
+        border: 0;
+        background: none;
+        font-size: 0;
+
+        &::after {
+          content: "\2717\00a0";
+          color: #000;
+        }
+
+        &:hover,
+        &:focus {
+          &::after {
+            // NOTE: Put hover/focus styles here
+          }
+        }
+      }
+    }
+  }
+
+  // CEEB Autosuggest
+  .ceeb-result-container {
+    position: relative;
+
+    .ceeb-icon.show {
+      &::after {
+        content: "\2717\00a0";
+        position: absolute;
+        right: 0;
+        cursor: pointer;
+      }
+
+      &:hover::after,
+      &:focus::after {
+        // Add x icon hover and focus state
+        color: blue;
+      }
+    }
+  }
+
+  .ac_results,
+  .ceeb-results {
+    background: #fff;
+    position: relative;
+    z-index: 1000;
+
+    &.hide {
+      @extend .visuallyhidden;
+    }
+
+    &.show {
+      position: absolute;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    &.many-results {
+      height: 300px;
+      overflow-x: hidden;
+      overflow-y: scroll;
+    }
+
+    &.few-results {
+      height: fit-content;
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      display: block;
+      margin: 0;
+      padding: 0.75em;
+      cursor: pointer;
+
+      &:nth-child(even) {
+        background: #eee;
+      }
+
+      // Hover State
+      // Use this instead of :hover to allow for keyboard navigation
+      &.ac_over,
+      &:hover,
+      &:focus {
+        background-color: #000;
+        color: white;
+      }
+
+      // Matching Search Text
+      &:not(.cantfind) strong {
+      }
+
+      .location,
+      .result-location {
+        display: block;
+        font-size: 0.85em;
+        font-style: italic;
+        margin: 0;
+      }
+
+      // Can't Find Link
+      &.cantfind {
+        // Hover State
+        &.ac_over {
+        }
+      }
+    }
+  }
+} @else if $x-ceebFormat == "modal" {
+  // ================
+  // Modal Format
+
+  // CEEB Modal
+  .ceebpop-modal.fancybox-wrap {
+  }
+
+  // CEEB Forms
+  .ceeb-search,
+  .ceeb-manual {
+  }
+
+  // CEEB Search Results List
+  .ceeb-results-list {
+    padding: 0;
+    list-style: none;
+
+    li {
+      position: relative;
+      margin: 0;
+      padding: 0.5em 5.5em 0.5em 0.5em;
+      background: #fff;
+
+      &:nth-child(even) {
+        background: #eee;
+      }
+
+      .ceeb-button-result {
+        display: block;
+        margin: 0.5em 0 0;
+
+        @media only screen and (min-width: $mq-400) {
+          position: absolute;
+          top: 1em;
+          right: 1em;
+          margin: 0;
+        }
+      }
+
+      &.ceeb-no-results {
+        padding: 2em 0.5em 0.5em;
+        text-align: center;
+        background: none;
+
+        .button-well {
+          margin-top: 0.5em;
+
+          .button ~ .button {
+            margin: 0 0 0 0.75em;
+          }
+
+          @media only screen and (min-width: $mq-600) {
+            display: inline-block;
+            margin-top: 0;
+
+            .button {
+              margin: 0 0 0 0.75em;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // CEEB Result
+  .ceeb-answer-group {
+    display: block;
+    padding: 0.5rem;
+    border: 1px solid #000;
+
+    .button-well {
+      margin: 0.5rem 0;
+    }
+  }
+
+  // CEEB School Data Formatting
+  [class^="ceeb"][class$="name"] {
+    display: block;
+  }
+
+  [class^="ceeb"][class$="city"],
+  [class^="ceeb"][class$="state"] {
+    font-size: 0.875em;
+    font-style: italic;
+    line-height: 1;
+  }
+
+  [class^="ceeb"][class$="city"] {
+    &::after {
+      content: ", ";
+    }
+  }
+}
