@@ -14,10 +14,18 @@
   padding:1rem;
 }
 
+#autoFiller{
+  textarea{
+    height: $mq-300;
+    white-space:nowrap;
+  }
+}
+
+#dynamicStyler{
+
+}
 
 textarea{
-  white-space:nowrap;
-  height: $mq-300;
   font-size: rem(13px);
 }
 

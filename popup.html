@@ -18,12 +18,14 @@
     </section>
 
     <!-- Dynamic Styles HTML -->
-    <section id="autoFiller" class="wrapper" style="display:none;">
+    <section id="dynamicStyler" class="wrapper" style="display:none;">
         <h1>Dynamic Content Stylizer</h1>
-        <p>Set your dynamic copy block styles here, click into your dynamic content block and click "apply"</p>
-        <label>Paragraph CSS</label>
-        <textarea id="cssInput"></textarea>
-        <button id="applyBtn">Apply CSS</button>
+        <p>Set your dynamic copy block styles here, click into your dynamic content block and click the button.</p>
+        <label>p style=</label>
+        <textarea id="paraStylesInput">text-align:left; font-size: 16px; color:#111111; line-height:1.2; margin: 16px 15px;</textarea>
+        <label>a style=</label>
+        <textarea id="linkStylesInput">color:#0068A5;</textarea>
+        <button id="applyBtn">Apply Styles</button>
     </section>
 </body>
 </html>

@@ -2,7 +2,7 @@
 
 
 ////////////////////////////////////
-// Retrieve and Populate Form Values
+// Acquia Select Auto Filler
 // Variables look for IDs on both form and field pages.
 
 // looks for message coming from background.js that sends when button in popup.html is clicked.
@@ -60,5 +60,78 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
         }
       }
     }
+  }
+});
+
+////////////////////////////////////
+// Dynamic Content Stylizer
+
+// Function to apply CSS styles to paragraphs and links
+function applyStylesToElements(elements, styles) {
+  for (var i = 0; i < elements.length; i++) {
+    var element = elements[i];
+
+    element.style.cssText = styles;
+  }
+}
+
+// Function to remove all <span> tags within paragraphs element
+function removeSpanTags(paragraphs) {
+
+  for (var i = 0; i < paragraphs.length; i++) {
+
+    var paragraph = paragraphs[i];
+    var spanTags = paragraph.getElementsByTagName('span');
+
+    while (spanTags.length > 0) {
+      var spanTag = spanTags[0];
+      spanTag.outerHTML = spanTag.innerHTML;
+    }
+  }
+}
+
+// Function to get paragraphs and links inside cke_editable body
+function getElementsInsideCKEEditableBody(bodyElement) {
+  if (bodyElement) {
+
+    var bodyDocument = bodyElement.contentDocument;
+
+    if (bodyDocument) {
+
+      var paragraphs = bodyDocument.querySelectorAll('.cke_editable p');
+      var links = bodyDocument.querySelectorAll('.cke_editable a');
+
+      return {
+        paragraphs: paragraphs,
+        links: links
+      };
+    }
+  }
+  return null;
+}
+
+// Function to apply styles to paragraphs and links inside all cke_editable bodies
+function applyStylesToAllCKEEditableBodies(paraStylesData, linkStyleData) {
+
+  var bodyElements = document.querySelectorAll('iframe.cke_reset');
+
+  for (var i = 0; i < bodyElements.length; i++) {
+
+    var elements = getElementsInsideCKEEditableBody(bodyElements[i]);
+
+    if (elements) {
+      if (paraStylesData) {
+        removeSpanTags(elements.paragraphs);
+        applyStylesToElements(elements.paragraphs, paraStylesData);
+        applyStylesToElements(elements.links, linkStyleData);
+      }
+    }
+  }
+}
+
+// Message listener to receive styles from background.js
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+  if (request && request.paraStylesData) {
+    applyStylesToAllCKEEditableBodies(request.paraStylesData, request.linkStyleData);
   }
 });
