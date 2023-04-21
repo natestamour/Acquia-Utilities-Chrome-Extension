@@ -75,17 +75,25 @@ function applyStylesToElements(elements, styles) {
   }
 }
 
-// Function to remove all <span> tags within paragraphs element
-function removeSpanTags(paragraphs) {
+// Function to remove all <span> and <br> tags within paragraphs element
+function removeTags(paragraphs) {
 
   for (var i = 0; i < paragraphs.length; i++) {
 
     var paragraph = paragraphs[i];
     var spanTags = paragraph.getElementsByTagName('span');
+    var brTags = paragraph.getElementsByTagName('br');
 
+    // Remove all <span> tags
     while (spanTags.length > 0) {
       var spanTag = spanTags[0];
       spanTag.outerHTML = spanTag.innerHTML;
+    }
+
+    // Remove <br> tags
+    while (brTags.length > 0) {
+      var brTag = brTags[0];
+      brTag.parentNode.removeChild(brTag);
     }
   }
 }
@@ -121,7 +129,7 @@ function applyStylesToAllCKEEditableBodies(paraStylesData, linkStyleData) {
 
     if (elements) {
       if (paraStylesData) {
-        removeSpanTags(elements.paragraphs);
+        removeTags(elements.paragraphs);
         applyStylesToElements(elements.paragraphs, paraStylesData);
         applyStylesToElements(elements.links, linkStyleData);
       }
