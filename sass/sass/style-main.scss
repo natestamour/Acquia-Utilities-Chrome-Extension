@@ -4,15 +4,30 @@
 @use "foundation/components" as *;
 @use "foundation/utilities" as *;
 
-// ================
-// Extension Styles
-// ================
+// ================================================
+// General Extension Styles
+// ================================================
 
-.wrapper{
-  width: $mq-400;
-  height: $mq-600;
-  padding:1rem;
+textarea{
+  font-size: rem(13px);
 }
+
+button{
+  margin-top:1rem;
+}
+
+.button-group{
+  display:flex;
+  gap:1rem;
+}
+
+.clicked{
+  background: black !important;
+}
+
+// ================================================
+// AutoFill Styles
+// ================================================
 
 #autoFiller{
   textarea{
@@ -21,14 +36,14 @@
   }
 }
 
+// ================================================
+// Dynamic Styler Styles
+// ================================================
+
 #dynamicStyler{
 
-}
+  .linkStylesInput{
+    min-height:auto;
+  }
 
-textarea{
-  font-size: rem(13px);
-}
-
-button{
-  margin-top:1rem;
 }

@@ -12,7 +12,8 @@
 // ================
 // Fonts
 
-@include fontFace("/fonts/fontawesome-webfont", "Icons");
+@include fontFace("fonts/fontawesome-webfont", "Icons");
+@include fontFace("fonts/icomoon", "ex-icons");
 
 // Use the below for Adobe Fonts. Replace the URL with the font(s) you're planning to use.
 // @import url("https://use.typekit.net/pyn1ykk.css");
@@ -24,6 +25,7 @@
 $f-headlineFont: sans-serif;
 $f-bodyFont: sans-serif;
 $f-iconFont: "Icons";
+$f-extensionIcons: "ex-icons";
 
 
 // EAB Brand Colors
@@ -31,6 +33,7 @@ $c-blue: #004b87;
 $c-medBlue: #00365f;
 $c-darkBlue: #002746;
 $c-orange: #ed8b00;
+$c-darkOrange: #cc7700; // use for text
 $c-lightTeal:#e0f1f1;
 $c-lightGrey: #eee;
 $c-grey: #6d6e71;
@@ -97,4 +100,7 @@ $i-mobilePhone: "\f10b";
 $i-email: "\f0e0";
 $i-emailOutline: "\f003";
 
-$x-imgAssetPath: "../../assets/images/";
+// Extension Icons
+$i-spinner: "\e984";
+$i-loop: "\ea2e";
+$i-redo: "\e966";

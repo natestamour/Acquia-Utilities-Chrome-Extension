@@ -24,20 +24,10 @@
 // ================
 // Layout Modules
 
-@mixin center ($_maxWidth: $d-centerMaxWidth, $_width: $d-centerWidth) {
-  width: $_width;
-  max-width: $_maxWidth;
-  margin: auto;
-}
-
-%center,
-.center {
-  @include center;
-}
-
-@mixin fullWidth () {
-  max-width: none;
-  width: 100%;
+.wrapper{
+  width: $mq-400;
+  height: $mq-600;
+  padding:1rem;
 }
 
 // Container Style Mixin

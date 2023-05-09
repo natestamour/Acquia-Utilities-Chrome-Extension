@@ -44,7 +44,7 @@ h6 {
 
 h1,
 h2 {
-  @include fluidRem("font-size", 1.5rem, 2rem);
+  @include fluidRem("font-size", 1.25rem, 1.5rem);
   color: $c-blue;
 }
 

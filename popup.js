@@ -1,17 +1,19 @@
 
 ////////////////////////////////////
-// show/hide Popup HTML content based off of url
+// Run the right functionality based off of url
 chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-  var currentUrl = tabs[0].url;
 
+  var currentUrl = tabs[0].url;
   var autoFillerContent = document.getElementById('autoFiller');
   var dynamicStylerContent = document.getElementById('dynamicStyler');
 
   if (currentUrl.includes("/forms/edit") || currentUrl.includes("/contacts/fields/edit/")) {
     autoFillerContent.style.display = 'block';
+    initializeProgramList();
   } 
   else if (currentUrl.includes("/emails/edit")) {
     dynamicStylerContent.style.display = 'block';
+    initializeDynamicStyler();
   }
 });
 
@@ -33,11 +35,37 @@ function saveContentToLocalStorage(key, content) {
   chrome.storage.local.set({[key]: content});
 }
 
+// Add event listener and save content
+function handleTextAreaInput(textArea, key) {
+  textArea.addEventListener('input', function() {
+    var content = textArea.value;
+    saveContentToLocalStorage(key, content);
+  });
+}
+
+// reset button functionality
+function setFormReset(formId, resetBtnId) {
+
+  const form = document.getElementById(formId);
+  const resetBtn = document.getElementById(resetBtnId);
+
+  if (form && resetBtn) {
+    resetBtn.addEventListener('click', (event) => {
+      event.preventDefault();
+      form.reset();
+
+        // Trigger input event for textareas to save their values
+        const textareas = form.querySelectorAll('textarea');
+        textareas.forEach((textarea) => {
+          textarea.dispatchEvent(new Event('input'));
+        });
+    });
+  }
+}
 
 ////////////////////////////////////
 // Select Auto Filler
-document.addEventListener('DOMContentLoaded', function() {
-
+function initializeProgramList() {
   var listSaveButton = document.getElementById('listSaveButton');
   var programListArea = document.getElementById('programListArea');
 
@@ -56,49 +84,36 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   listSaveButton.addEventListener('click', function() {
-
     var currentProgramList = getProgramList();
 
     chrome.runtime.sendMessage({data: currentProgramList});
-
   });
-});
+}
 
 ////////////////////////////////////
 // Dynamic Content Stylizer
-document.addEventListener('DOMContentLoaded', function() {
-
+function initializeDynamicStyler() {
   var applyBtn = document.getElementById('applyBtn');
   var paraStylesInput = document.getElementById('paraStylesInput');
   var linkStylesInput = document.getElementById('linkStylesInput');
 
-  // // Load previous values
-  // loadContentFromLocalStorage('paraStylesInputContent', paraStylesInput);
-  // loadContentFromLocalStorage('linkStylesInputContent', linkStylesInput);
+  // Load previous values
+  loadContentFromLocalStorage('paraStylesInputContent', paraStylesInput);
+  loadContentFromLocalStorage('linkStylesInputContent', linkStylesInput);
 
-  // // save paragraph styles text area
-  // paraStylesInput.addEventListener('input', function() {
-  //   var content = paraStylesInput.value;
+  // save paragraph styles and link styles text areas
+  handleTextAreaInput(paraStylesInput, 'paraStylesInputContent');
+  handleTextAreaInput(linkStylesInput, 'linkStylesInputContent');
 
-  //   saveContentToLocalStorage('paraStylesInputContent', content);
-  // });
-
-  // // save link styles text area
-  // linkStylesInput.addEventListener('input', function() {
-  //   var content = linkStylesInput.value;
-
-  //   saveContentToLocalStorage('linkStylesInputContent', content);
-  // });
+  // Reset button
+  setFormReset('dynamicStylerForm', 'resetBtn');
 
   // send message with data on button click
   applyBtn.addEventListener('click', function() {
-
+    
     var paraStyles = paraStylesInput.value;
     var linkStyles = linkStylesInput.value;
-    
-    console.log('sending message to background.js');
 
     chrome.runtime.sendMessage({paraStylesData: paraStyles, linkStyleData: linkStyles});
-
   });
-});
+}

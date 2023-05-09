@@ -3,7 +3,13 @@
   font-family: "Icons";
   font-weight: normal;
   font-style: normal;
-  src: url("/fonts/fontawesome-webfont.woff") format("woff");
+  src: url("fonts/fontawesome-webfont.woff") format("woff");
+}
+@font-face {
+  font-family: "ex-icons";
+  font-weight: normal;
+  font-style: normal;
+  src: url("fonts/icomoon.woff") format("woff");
 }
 *,
 *::before,
@@ -234,19 +240,19 @@ h6 {
 
 h1,
 h2 {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   color: #004b87;
 }
 @media (min-width: 18.75rem) {
   h1,
   h2 {
-    font-size: calc( 1.5rem + 0.5 * ((100vw - 18.75rem) / 56.25) );
+    font-size: calc( 1.25rem + 0.25 * ((100vw - 18.75rem) / 56.25) );
   }
 }
 @media (min-width: 75rem) {
   h1,
   h2 {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 }
 
@@ -361,10 +367,10 @@ hr {
   width: device-width;
   zoom: 1;
 }
-.center {
-  width: 90%;
-  max-width: 75rem;
-  margin: auto;
+.wrapper {
+  width: 25rem;
+  height: 37.5rem;
+  padding: 1rem;
 }
 
 button.button, .button button,
@@ -476,6 +482,23 @@ input.major-button:focus,
   color: #004b87;
   background: transparent;
 }
+a.button .clicked,
+.button a .clicked,
+input.button .clicked,
+.button input .clicked, button .clicked,
+.type_event_button a .clicked,
+input[type=submit] .clicked,
+input[type=button] .clicked,
+a.minor-button .clicked,
+.minor-button a .clicked,
+input.minor-button .clicked,
+.minor-button input .clicked,
+a.major-button .clicked,
+.major-button a .clicked,
+input.major-button .clicked,
+.major-button input .clicked {
+  background: black;
+}
 @media (min-width: 31.25rem) {
   button.button, .button button,
   a.button,
@@ -549,6 +572,29 @@ input.minor-button,
   .minor-button input {
     font-size: 0.975rem;
   }
+}
+
+.reset-button {
+  background: #ed8b00;
+  border-color: #ed8b00;
+  font-family: "ex-icons";
+  width: 3.5rem;
+  padding-right: 0;
+  padding-left: 0;
+}
+.reset-button:before {
+  content: "\ea2e";
+  font-family: "ex-icons";
+  display: inline-block;
+  height: 18px;
+  width: 18px;
+  transition: transform 0.25s ease-in-out;
+}
+.reset-button:hover, .reset-button:focus {
+  color: #cc7700;
+}
+.reset-button:hover:before, .reset-button:focus:before {
+  transform: rotate(-0.5turn);
 }
 
 .rte-custom-highschoollookup7 .result {
@@ -685,7 +731,7 @@ input[type=search]:focus {
 textarea {
   overflow: auto;
   resize: vertical;
-  min-height: 8em;
+  min-height: 7em;
 }
 
 select {
@@ -889,10 +935,21 @@ input[type=checkbox] + label {
 .fancybox-content > [tabindex="0"] {
   outline: 0;
 }
-.wrapper {
-  width: 25rem;
-  height: 37.5rem;
-  padding: 1rem;
+textarea {
+  font-size: 0.8125rem;
+}
+
+button {
+  margin-top: 1rem;
+}
+
+.button-group {
+  display: flex;
+  gap: 1rem;
+}
+
+.clicked {
+  background: black !important;
 }
 
 #autoFiller textarea {
@@ -900,10 +957,6 @@ input[type=checkbox] + label {
   white-space: nowrap;
 }
 
-textarea {
-  font-size: 0.8125rem;
-}
-
-button {
-  margin-top: 1rem;
+#dynamicStyler .linkStylesInput {
+  min-height: auto;
 }/*# sourceMappingURL=style-main.css.map */

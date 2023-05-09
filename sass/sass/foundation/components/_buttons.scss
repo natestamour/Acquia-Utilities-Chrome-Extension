@@ -59,6 +59,10 @@
     background: transparent;
   }
 
+  .clicked{
+    background: black;
+  }
+
   @media (min-width: $mq-500) {
     display: inline-block;
     width: auto;
@@ -77,6 +81,34 @@
   @include fluidRem("font-size", 0.78rem, 0.975rem);
 
   padding: 0.35em 0.65em;
+}
+
+.reset-button{
+  background: $c-orange;
+  border-color: $c-orange;
+  // text-indent: -9999em;
+  font-family:$f-extensionIcons;
+  width: 3.5rem;
+  padding-right:0;
+  padding-left:0;
+
+  &:before{
+    content:$i-loop;
+    font-family: $f-extensionIcons;
+    display:inline-block;
+    height:18px;
+    width:18px;
+    transition: transform 0.25s ease-in-out;
+  }
+
+  &:hover,
+  &:focus{
+    color: $c-darkOrange;
+
+    &:before{
+      transform: rotate(-0.5turn);
+    }
+  }
 }
 
 // ================
