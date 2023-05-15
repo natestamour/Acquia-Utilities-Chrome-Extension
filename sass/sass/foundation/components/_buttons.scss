@@ -59,10 +59,6 @@
     background: transparent;
   }
 
-  .clicked{
-    background: black;
-  }
-
   @media (min-width: $mq-500) {
     display: inline-block;
     width: auto;
@@ -81,6 +77,21 @@
   @include fluidRem("font-size", 0.78rem, 0.975rem);
 
   padding: 0.35em 0.65em;
+}
+
+// button done state
+button.clicked{
+  color: rgba($c-blue, .75);
+  border-color: rgba($c-blue, .75);
+  background: transparent;
+
+  &:before{
+    content:$i-check;
+    margin-right: .5rem;
+    font-family: $f-iconFont;
+    display:inline-block;
+    transition: transform 0.25s ease-in-out;
+  }
 }
 
 .reset-button{

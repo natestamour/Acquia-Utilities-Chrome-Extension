@@ -33,6 +33,12 @@ function loadContentFromLocalStorage(key, element) {
 // save content to local storage
 function saveContentToLocalStorage(key, content) {
   chrome.storage.local.set({[key]: content});
+
+  // Remove 'clicked' class from buttons
+  const clickedButtons = document.querySelectorAll('.clicked');
+  clickedButtons.forEach((button) => {
+    button.classList.remove('clicked');
+  });
 }
 
 // Add event listener and save content
@@ -45,20 +51,19 @@ function handleTextAreaInput(textArea, key) {
 
 // reset button functionality
 function setFormReset(formId, resetBtnId) {
-
   const form = document.getElementById(formId);
   const resetBtn = document.getElementById(resetBtnId);
 
-  if (form && resetBtn) {
+  if (resetBtn) {
     resetBtn.addEventListener('click', (event) => {
       event.preventDefault();
       form.reset();
 
-        // Trigger input event for textareas to save their values
-        const textareas = form.querySelectorAll('textarea');
-        textareas.forEach((textarea) => {
-          textarea.dispatchEvent(new Event('input'));
-        });
+      // Trigger input event for textareas to save their values
+      const textareas = form.querySelectorAll('textarea');
+      textareas.forEach((textarea) => {
+        textarea.dispatchEvent(new Event('input'));
+      });
     });
   }
 }
@@ -85,6 +90,7 @@ function initializeProgramList() {
 
   listSaveButton.addEventListener('click', function() {
     var currentProgramList = getProgramList();
+    listSaveButton.classList.add('clicked');
 
     chrome.runtime.sendMessage({data: currentProgramList});
   });
@@ -110,9 +116,9 @@ function initializeDynamicStyler() {
 
   // send message with data on button click
   applyBtn.addEventListener('click', function() {
-    
     var paraStyles = paraStylesInput.value;
     var linkStyles = linkStylesInput.value;
+    applyBtn.classList.add('clicked');
 
     chrome.runtime.sendMessage({paraStylesData: paraStyles, linkStyleData: linkStyles});
   });

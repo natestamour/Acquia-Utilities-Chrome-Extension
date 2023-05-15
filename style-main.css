@@ -482,23 +482,6 @@ input.major-button:focus,
   color: #004b87;
   background: transparent;
 }
-a.button .clicked,
-.button a .clicked,
-input.button .clicked,
-.button input .clicked, button .clicked,
-.type_event_button a .clicked,
-input[type=submit] .clicked,
-input[type=button] .clicked,
-a.minor-button .clicked,
-.minor-button a .clicked,
-input.minor-button .clicked,
-.minor-button input .clicked,
-a.major-button .clicked,
-.major-button a .clicked,
-input.major-button .clicked,
-.major-button input .clicked {
-  background: black;
-}
 @media (min-width: 31.25rem) {
   button.button, .button button,
   a.button,
@@ -572,6 +555,19 @@ input.minor-button,
   .minor-button input {
     font-size: 0.975rem;
   }
+}
+
+button.clicked {
+  color: rgba(0, 75, 135, 0.75);
+  border-color: rgba(0, 75, 135, 0.75);
+  background: transparent;
+}
+button.clicked:before {
+  content: "\f00c";
+  margin-right: 0.5rem;
+  font-family: "Icons";
+  display: inline-block;
+  transition: transform 0.25s ease-in-out;
 }
 
 .reset-button {
@@ -946,10 +942,6 @@ button {
 .button-group {
   display: flex;
   gap: 1rem;
-}
-
-.clicked {
-  background: black !important;
 }
 
 #autoFiller textarea {
