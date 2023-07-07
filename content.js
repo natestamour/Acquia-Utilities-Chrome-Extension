@@ -1,6 +1,4 @@
 
-
-
 ////////////////////////////////////
 // Acquia Select Auto Filler
 // Variables look for IDs on both form and field pages.

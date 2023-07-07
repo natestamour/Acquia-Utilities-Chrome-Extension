@@ -1,4 +1,6 @@
 
+
+
 ////////////////////////////////////
 // Run the right functionality based off of url
 chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {

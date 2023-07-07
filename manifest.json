@@ -1,8 +1,11 @@
 {
     "manifest_version": 3,
     "name": "Acquia Utilities",
-    "version": "1.0",
+    "version": "1.1",
     "description": "A tool to auto fill inputs within Acquia's forms, as well as apply styling to dynamic content blocks within the email editor.",
+    "background": {
+      "service_worker": "background.js"
+    },
     "action": {
       "default_popup": "popup.html",
       "default_icon": {
@@ -11,13 +14,22 @@
         "128": "images/icon128.png"
       }
     },
-    "background": {
-      "service_worker": "background.js"
-    },
     "icons": {
       "16": "images/icon16.png",
       "48": "images/icon48.png",
       "128": "images/icon128.png"
     },
-    "permissions": ["activeTab", "scripting", "storage"]
+
+    "content_scripts": [
+      {
+        "matches": ["https://*.contact-server.com/s/*", "https://github.com/*"],
+        "js": ["contentScript.js"]
+      }
+    ],
+    "permissions": ["activeTab", "scripting", "storage"],
+    "host_permissions": [
+      "https://*/s/*",
+      "https://*.contact-server.com/s/*",
+      "https://*/s/pages"
+    ]
   }
