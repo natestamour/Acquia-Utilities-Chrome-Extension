@@ -5,22 +5,22 @@
     var aTags = document.getElementsByTagName('a');
   
     // If using border
-    // var styles = [
-    //   { keyword: 'DIQ; Primary', color: 'blue' },
-    //   { keyword: 'SJ; Primary;', color: '#009963' },
-    //   { keyword: 'Partial;', color: '#adadad' },
-    //   { keyword: 'Redirect;', color: '#ffec83' },
-    //   // Add more keyword-color mappings here
-    // ];
-  
-    // If using background 
     var styles = [
-      { keyword: 'DIQ; Primary', color: '#c2e6ff' },
-      { keyword: 'SJ; Primary;', color: '#bfffe8' },
-      { keyword: 'Partial;', color: '#dedede' },
-      { keyword: 'Redirect;', color: '#fcffc5' },
+      { keyword: 'DIQ; Primary', color: '#009963' },
+      { keyword: 'SJ; Primary;', color: '#990000' },
+      { keyword: 'PS;', color: '#2196F3' },
+      { keyword: 'Partial;', color: '#adadad' }
       // Add more keyword-color mappings here
     ];
+  
+    // // If using background 
+    // var styles = [
+    //   { keyword: 'DIQ; Primary', color: '#c2e6ff' },
+    //   { keyword: 'SJ; Primary;', color: '#bfffe8' },
+    //   { keyword: 'Partial;', color: '#dedede' },
+    //   { keyword: 'Redirect;', color: '#fcffc5' },
+    //   // Add more keyword-color mappings here
+    // ];
   
     for (var i = 0; i < aTags.length; i++) {
       var text = aTags[i].textContent;
@@ -30,24 +30,24 @@
         var color = styles[j].color;
   
         // target Row and add border
-        // if (text.includes(keyword)) {
-        //   var trElement = aTags[i].closest('tr');
-        //   if (trElement) {
-        //     trElement.style.borderLeft = `5px solid ${color}`;
-        //   }
-        //   break; // Exit the loop once a match is found
-        // }
-  
-        // target sibling cells and add background
         if (text.includes(keyword)) {
-          var tdElements = aTags[i].parentNode.parentNode.querySelectorAll('td');
-          if (tdElements) {
-            for (var k = 0; k < tdElements.length; k++) {
-              tdElements[k].style.background = color;
-            }
+          var trElement = aTags[i].closest('tr');
+          if (trElement) {
+            trElement.style.borderLeft = `5px solid ${color}`;
           }
           break; // Exit the loop once a match is found
         }
+  
+        // // target sibling cells and add background
+        // if (text.includes(keyword)) {
+        //   var tdElements = aTags[i].parentNode.parentNode.querySelectorAll('td');
+        //   if (tdElements) {
+        //     for (var k = 0; k < tdElements.length; k++) {
+        //       tdElements[k].style.background = color;
+        //     }
+        //   }
+        //   break; // Exit the loop once a match is found
+        // }
       }
     }
   }
@@ -106,6 +106,7 @@ function createAcquiaFilterSelect() {
   var select = document.createElement("select");
   select.id = "acquia-utilities-landing-select"; // Add the id attribute
   select.classList.add("form-control");
+  select.setAttribute("style", "font-size: 1.5rem");
 
   // Check if the page URL contains "s/forms"
   if (window.location.href.includes("s/forms")) {
@@ -183,7 +184,7 @@ function createAcquiaFilterSelect() {
   function handleDOMChanges() {
 
     setTimeout(function() {
-      // addStyleToWrappingTrElements();
+      addStyleToWrappingTrElements();
       removeColumnsByClassNames();
       createAcquiaFilterSelect();
     }, 200);
