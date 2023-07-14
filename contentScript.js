@@ -118,12 +118,12 @@ function createAcquiaFilterSelect() {
   } else if (window.location.href.includes("s/pages")) {
     var options = [
       { text: "Filter options", value: "" },
-      { text: "Redirects", value: "Redirect" },
-      { text: "Partial", value: "Partial" },
       { text: "Student Journey", value: "SJ; Primary;" },
-      { text: "DIQ", value: "DIQ; Primary;" },
       { text: "Paid Search", value: "PS;" },
-      { text: "General Pages", value: "General;" }
+      { text: "DIQ", value: "DIQ; Primary;" },
+      { text: "General Pages", value: "General;" },
+      { text: "Redirects", value: "Redirect" },
+      { text: "Partial", value: "Partial" }
     ];
   } else {
     // Return early if the URL does not match either condition
