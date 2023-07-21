@@ -29,7 +29,6 @@
     "permissions": ["activeTab", "scripting", "storage"],
     "host_permissions": [
       "https://*/s/*",
-      "https://*.contact-server.com/s/*",
-      "https://*/s/pages"
+      "https://*.contact-server.com/s/*"
     ]
   }

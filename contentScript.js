@@ -12,15 +12,7 @@
       { keyword: 'Partial;', color: '#adadad' }
       // Add more keyword-color mappings here
     ];
-  
-    // // If using background 
-    // var styles = [
-    //   { keyword: 'DIQ; Primary', color: '#c2e6ff' },
-    //   { keyword: 'SJ; Primary;', color: '#bfffe8' },
-    //   { keyword: 'Partial;', color: '#dedede' },
-    //   { keyword: 'Redirect;', color: '#fcffc5' },
-    //   // Add more keyword-color mappings here
-    // ];
+
   
     for (var i = 0; i < aTags.length; i++) {
       var text = aTags[i].textContent;
@@ -37,17 +29,6 @@
           }
           break; // Exit the loop once a match is found
         }
-  
-        // // target sibling cells and add background
-        // if (text.includes(keyword)) {
-        //   var tdElements = aTags[i].parentNode.parentNode.querySelectorAll('td');
-        //   if (tdElements) {
-        //     for (var k = 0; k < tdElements.length; k++) {
-        //       tdElements[k].style.background = color;
-        //     }
-        //   }
-        //   break; // Exit the loop once a match is found
-        // }
       }
     }
   }
@@ -63,7 +44,9 @@
     '.col-page-submission',
     '.col-form-category',
     '.col-form-dateAdded',
-    '.col-form-createdby'
+    '.col-form-createdby',
+    '.col-email-dateAdded',
+    '.col-email-createdByUser'
   ];
 
     // Remove columns by class names
@@ -82,9 +65,6 @@
           var cell = rows[j].cells[columnIndex];
           cell.parentNode.removeChild(cell);
         }
-
-        // Remove the corresponding <th> element
-        th.parentNode.removeChild(th);
       }
     });
   }
