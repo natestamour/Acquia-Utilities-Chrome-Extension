@@ -10,6 +10,29 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 
     const inputData = request.data.split('\n');
     const hiddenInput = document.getElementById('leadfield_properties_itemcount') || document.getElementById('formfield_properties_list_itemcount');
+
+    if (hiddenInput.id === 'leadfield_properties_itemcount') {
+      inputData.push("Other|Other", "Unmapped|Unmapped");
+    }
+  
+    if (hiddenInput.id === 'formfield_properties_list_itemcount') {
+      const indexToRemove = inputData.indexOf("Other|Other");
+      if (indexToRemove !== -1) {
+        inputData.splice(indexToRemove, 1);
+      }
+  
+      const indexToRemoveUnmapped = inputData.indexOf("Unmapped|Unmapped");
+      if (indexToRemoveUnmapped !== -1) {
+        inputData.splice(indexToRemoveUnmapped, 1);
+      }
+    }
+
+    const indexUnsure = inputData.indexOf("Unsure|Unsure");
+    if (indexUnsure !== -1) {
+      const unsureValue = inputData.splice(indexUnsure, 1);
+      inputData.push(unsureValue[0]);
+    }
+
     let initialItemCount = parseInt(hiddenInput.value);
 
     // Check if initialItemCount is greater than inputData.length
@@ -99,12 +122,11 @@ function removeTags(paragraphs) {
 // Function to get paragraphs and links inside cke_editable body
 function getElementsInsideCKEEditableBody(bodyElement) {
   if (bodyElement) {
-
     var bodyDocument = bodyElement.contentDocument;
-
+    
     if (bodyDocument) {
-
-      var paragraphs = bodyDocument.querySelectorAll('.cke_editable p');
+      // Select '.cke_editable p' elements that are not inside an <li> element
+      var paragraphs = bodyDocument.querySelectorAll('.cke_editable p:not(li p)');
       var links = bodyDocument.querySelectorAll('.cke_editable a');
 
       return {
