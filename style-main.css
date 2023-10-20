@@ -570,7 +570,7 @@ button.clicked:before {
   transition: transform 0.25s ease-in-out;
 }
 
-.reset-button {
+.reset-button, .clear-button {
   background: #ed8b00;
   border-color: #ed8b00;
   font-family: "ex-icons";
@@ -578,7 +578,7 @@ button.clicked:before {
   padding-right: 0;
   padding-left: 0;
 }
-.reset-button:before {
+.reset-button:before, .clear-button:before {
   content: "\ea2e";
   font-family: "ex-icons";
   display: inline-block;
@@ -586,11 +586,23 @@ button.clicked:before {
   width: 18px;
   transition: transform 0.25s ease-in-out;
 }
-.reset-button:hover, .reset-button:focus {
+.reset-button:hover, .clear-button:hover, .reset-button:focus, .clear-button:focus {
   color: #cc7700;
 }
-.reset-button:hover:before, .reset-button:focus:before {
+.reset-button:hover:before, .clear-button:hover:before, .reset-button:focus:before, .clear-button:focus:before {
   transform: rotate(-0.5turn);
+}
+
+.clear-button:before {
+  content: "\f014";
+  font-family: "Icons";
+  font-weight: normal;
+}
+.clear-button:hover, .clear-button:focus {
+  color: #cc7700;
+}
+.clear-button:hover:before, .clear-button:focus:before {
+  transform: none;
 }
 
 .rte-custom-highschoollookup7 .result {

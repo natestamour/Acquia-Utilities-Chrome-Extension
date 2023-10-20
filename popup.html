@@ -13,9 +13,16 @@
     <section id="autoFiller" class="wrapper" style="display:none;">
         <h1>Acquia Select AutoFiller</h1>
         <p>Copy your list from excel into the text area below and click "Submit" while you are in an Acquia form or field asset.</p>
-        <label>List you want to autofill</label>
-        <textarea id="programListArea" placeholder="program name | 1"></textarea>
-        <button id="listSaveButton">Submit</button>
+
+        <form id="autoFillerForm">
+            <label>List you want to autofill</label>
+            <textarea id="programListArea" placeholder="program name | program name"></textarea> 
+        </form>
+
+        <div class="button-group">
+            <button id="listSaveButton">Submit</button>
+            <button id="clearBtn" class="clear-button"></button>
+        </div>      
     </section>
 
     <!-- Dynamic Styles HTML -->

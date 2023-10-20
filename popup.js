@@ -51,6 +51,16 @@ function handleTextAreaInput(textArea, key) {
   });
 }
 
+// // Get a reference to the clearBtn and programListArea elements
+// var clearBtn = document.getElementById("clearBtn");
+// var programListArea = document.getElementById("programListArea");
+
+// // Add a click event listener to the clearBtn
+// clearBtn.addEventListener("click", function() {
+//     // Clear the content of the textarea
+//     programListArea.value = "";
+// });
+
 // reset button functionality
 function setFormReset(formId, resetBtnId) {
   const form = document.getElementById(formId);
@@ -89,6 +99,8 @@ function initializeProgramList() {
 
     saveContentToLocalStorage('programListAreaContent', content);
   });
+
+  setFormReset('autoFillerForm', 'clearBtn');
 
   listSaveButton.addEventListener('click', function() {
     var currentProgramList = getProgramList();
