@@ -12,7 +12,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     const hiddenInput = document.getElementById('leadfield_properties_itemcount') || document.getElementById('formfield_properties_list_itemcount');
 
     if (hiddenInput.id === 'leadfield_properties_itemcount') {
-      inputData.push("Other|Other", "Unmapped|Unmapped");
+      inputData.push("Other|Other", "Unmapped Value|Unmapped Value");
     }
   
     if (hiddenInput.id === 'formfield_properties_list_itemcount') {
@@ -21,7 +21,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
         inputData.splice(indexToRemove, 1);
       }
   
-      const indexToRemoveUnmapped = inputData.indexOf("Unmapped|Unmapped");
+      const indexToRemoveUnmapped = inputData.indexOf("Unmapped Value|Unmapped Value");
       if (indexToRemoveUnmapped !== -1) {
         inputData.splice(indexToRemoveUnmapped, 1);
       }
