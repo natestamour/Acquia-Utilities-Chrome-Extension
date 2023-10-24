@@ -10,27 +10,23 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 
     const inputData = request.data.split('\n');
     const hiddenInput = document.getElementById('leadfield_properties_itemcount') || document.getElementById('formfield_properties_list_itemcount');
-
-    if (hiddenInput.id === 'leadfield_properties_itemcount') {
-      inputData.push("Other|Other", "Unmapped Value|Unmapped Value");
+    
+    // Remove standard values, then add them back later in proper order.
+    const indexToRemove = inputData.indexOf("Other|Other");
+    if (indexToRemove !== -1) {
+      inputData.splice(indexToRemove, 1);
     }
-  
-    if (hiddenInput.id === 'formfield_properties_list_itemcount') {
-      const indexToRemove = inputData.indexOf("Other|Other");
-      if (indexToRemove !== -1) {
-        inputData.splice(indexToRemove, 1);
-      }
-  
-      const indexToRemoveUnmapped = inputData.indexOf("Unmapped Value|Unmapped Value");
-      if (indexToRemoveUnmapped !== -1) {
-        inputData.splice(indexToRemoveUnmapped, 1);
-      }
+    const indexToRemoveUnmapped = inputData.indexOf("Unmapped Value|Unmapped Value");
+    if (indexToRemoveUnmapped !== -1) {
+      inputData.splice(indexToRemoveUnmapped, 1);
     }
-
     const indexUnsure = inputData.indexOf("Unsure|Unsure");
     if (indexUnsure !== -1) {
       const unsureValue = inputData.splice(indexUnsure, 1);
       inputData.push(unsureValue[0]);
+    }
+    if (hiddenInput.id === 'leadfield_properties_itemcount') {
+      inputData.push("Other|Other", "Unmapped Value|Unmapped Value");
     }
 
     let initialItemCount = parseInt(hiddenInput.value);
