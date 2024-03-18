@@ -1,4 +1,6 @@
 
+// This file handles style changes to Acquia's interface. 
+
   ////////////////////////////////////////////////////////////////////////
   // Stylize Landing Page asset rows
   function addStyleToWrappingTrElements() {
@@ -158,7 +160,6 @@ function createAcquiaFilterSelect() {
   container.appendChild(select);
 }
 
-
   ////////////////////////////////////////////////////////////////////////
   // Functions that will trigger whenever the dom is edited 
   function handleDOMChanges() {
@@ -192,4 +193,3 @@ function createAcquiaFilterSelect() {
   
   // Initialize the MutationObserver
   initializeMutationObserver();
-  
