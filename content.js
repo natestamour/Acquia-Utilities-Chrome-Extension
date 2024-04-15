@@ -92,11 +92,9 @@ function applyStylesToElements(elements, styles) {
   }
 }
 
-// Function to remove all <span> and <br> tags within paragraphs element
+// Function to remove all <span> tags within paragraphs element
 function removeTags(paragraphs) {
-
   for (var i = 0; i < paragraphs.length; i++) {
-
     var paragraph = paragraphs[i];
     var spanTags = paragraph.getElementsByTagName('span');
     var brTags = paragraph.getElementsByTagName('br');
@@ -104,7 +102,12 @@ function removeTags(paragraphs) {
     // Remove all <span> tags
     while (spanTags.length > 0) {
       var spanTag = spanTags[0];
-      spanTag.outerHTML = spanTag.innerHTML;
+      // Replace the span with its contents
+      while (spanTag.firstChild) {
+        paragraph.insertBefore(spanTag.firstChild, spanTag);
+      }
+      // Remove the empty span
+      spanTag.parentNode.removeChild(spanTag);
     }
 
     // Remove <br> tags
@@ -121,8 +124,8 @@ function getElementsInsideCKEEditableBody(bodyElement) {
     var bodyDocument = bodyElement.contentDocument;
     
     if (bodyDocument) {
-      // Select '.cke_editable p' elements that are not inside an <li> element
-      var paragraphs = bodyDocument.querySelectorAll('.cke_editable p:not(li p)');
+      // Select '.cke_editable p' and 'li' elements
+      var paragraphs = bodyDocument.querySelectorAll('.cke_editable p, .cke_editable li');
       var links = bodyDocument.querySelectorAll('.cke_editable a');
 
       return {
@@ -134,7 +137,7 @@ function getElementsInsideCKEEditableBody(bodyElement) {
   return null;
 }
 
-// Function to apply styles to paragraphs and links inside all cke_editable bodies
+// Function to apply styles to paragraphs and list elements inside all cke_editable bodies
 function applyStylesToAllCKEEditableBodies(paraStylesData, linkStyleData) {
 
   var bodyElements = document.querySelectorAll('iframe.cke_reset');
@@ -145,14 +148,28 @@ function applyStylesToAllCKEEditableBodies(paraStylesData, linkStyleData) {
 
     if (elements) {
       if (paraStylesData) {
-        removeTags(elements.paragraphs);
+        // Apply styles to paragraphs
         applyStylesToElements(elements.paragraphs, paraStylesData);
+        
+        // Apply styles to <ul> and <ol> elements
+        var listElements = bodyElements[i].contentDocument.querySelectorAll('.cke_editable ul, .cke_editable ol');
+        applyStylesToElements(listElements, paraStylesData);
+        
+        // Remove inline styles from <li> tags
+        var liTags = bodyElements[i].contentDocument.querySelectorAll('.cke_editable li');
+        for (var k = 0; k < liTags.length; k++) {
+          liTags[k].removeAttribute('style');
+        }
+        
+        // Remove <span> tags within paragraphs
+        removeTags(elements.paragraphs);
+        
+        // Apply styles to links
         applyStylesToElements(elements.links, linkStyleData);
       }
     }
   }
 }
-
 // Message listener to receive styles from background.js
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
   if (request && request.paraStylesData) {
