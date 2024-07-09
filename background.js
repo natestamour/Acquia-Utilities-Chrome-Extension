@@ -42,31 +42,3 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     });
   }
 });
-
-
-////////////////////////////////////////////////////////////////////////
-// ! TEMPORARY FIX FOR ACQUIA FORM
-// Function to hide element
-function hideElement(tabId) {
-  chrome.scripting.executeScript({
-      target: {tabId: tabId},
-      func: () => {
-          var element = document.querySelector('#mauticform_buttons_apply_toolbar');
-          if (element) {
-              element.style.display = 'none';
-          }
-      }
-  });
-}
-
-// Event listener for when a tab is updated
-chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-  // Check if the tab's URL matches the pattern
-  if (tab.url && tab.url.match(/https:\/\/.*\/s\/forms\/edit\/.*/)) {
-      // Call function to hide element
-      hideElement(tabId);
-  }
-});
-
-///////////// 
-// ! END FIX
